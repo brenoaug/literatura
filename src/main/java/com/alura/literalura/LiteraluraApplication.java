@@ -16,7 +16,7 @@ public class LiteraluraApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) {
 		var consumoApi = new ConsumoApi();
-		var json = consumoApi.obterDadosPorLivro();
+		var json = consumoApi.obterDados();
 		System.out.println(json);
 	}
 }
