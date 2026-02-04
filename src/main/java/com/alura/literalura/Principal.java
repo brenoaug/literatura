@@ -22,13 +22,15 @@ public class Principal {
 
         System.out.println("""
                 =================================================
-                Bem-vindo ao Literalura - Sua Biblioteca Virtual!;
-                Pesquise sobre seus livros.""");
+                Bem-vindo ao Literalura - Sua Biblioteca Virtual!
+                Pesquise sobre seus livros.
+                =================================================
+                """);
         System.out.print("Digite seu nome: ");
         String nome = scanner.nextLine();
-        System.out.println("Olá, " + nome + "! Vamos explorar o mundo dos livros juntos.");
+        System.out.println("\nOlá, " + nome + "! Vamos explorar o mundo dos livros juntos.");
         System.out.println("""
-                Menu de Opções:
+                \nMenu de Opções:
                 1. Buscar Livro por Nome
                 2. Listar Todos os Livros
                 3. Lista de Autores
@@ -50,7 +52,7 @@ public class Principal {
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
             System.out.println("""
-                        Menu de Opções:
+                    \nMenu de Opções:
                     1. Buscar Livro por Nome
                     2. Listar Todos os Livros
                     3. Lista de Autores
@@ -69,17 +71,18 @@ public class Principal {
 
         String urlPesquisa = "?search=" + nomeLivro.toLowerCase().replace(" ", "-");
 
-        System.out.println("Buscando informações sobre o livro: " + nomeLivro.toUpperCase());
+        System.out.println("Buscando informações sobre o livro: " + nomeLivro.toUpperCase() + "\n");
 
         var json = consumoApi.obterDados(urlPesquisa);
 
-        String resultadoPesquisa = converteDados.obterDados(json, DadosResposta.class).toString();
+        String resultadoPesquisa = converteDados.obterDados(json, DadosResposta.class).livro().stream()
+                .map(DadosLivro::toString).collect(Collectors.joining("\n\n"));
 
         System.out.println(resultadoPesquisa);
     }
 
     public void listarTodosLivros() {
-        System.out.println("Listando todos os livros disponíveis...");
+        System.out.println("Listando todos os livros disponíveis...\n");
 
         String urlTodosLivros = "";
 
@@ -92,7 +95,7 @@ public class Principal {
     }
 
     public void listarAutores() {
-        System.out.println("Listando todos os autores disponíveis...");
+        System.out.println("Listando todos os autores disponíveis...\n");
 
         String urlTodosAutores = "";
 
