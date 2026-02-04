@@ -104,6 +104,7 @@ public class Principal {
 
         String resultadoLista = converteDados.obterDados(json, DadosResposta.class).livro().stream()
                 .flatMap(l -> l.autor().stream())
+                .distinct().sorted(Comparator.comparing(DadosAutor::nome))
                 .map(DadosAutor::toString).collect(Collectors.joining(",\n\n "));
 
         System.out.println(resultadoLista);
@@ -117,6 +118,8 @@ public class Principal {
         int anoFinal = scanner.nextInt();
         scanner.nextLine();
 
+        System.out.println("\nListando autores vivos entre os anos " + anoInicial + " e " + anoFinal + "...\n");
+
         String urlAutoresVivos = "?author_year_start=" + anoInicial + "&author_year_end=" + anoFinal;
 
         var json = consumoApi.obterDados(urlAutoresVivos);
@@ -128,6 +131,4 @@ public class Principal {
 
         System.out.println(resultadoLista);
     }
-
-
 }
