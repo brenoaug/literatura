@@ -11,6 +11,6 @@ public record DadosResposta(@JsonAlias({"results", "resultado"}) List<DadosLivro
 
     @Override
     public @NotNull String toString() {
-        return "Dados do Livro: \n" + livro.getFirst();
+        return "Dados do Livro: \n" + livro;
     }
 }

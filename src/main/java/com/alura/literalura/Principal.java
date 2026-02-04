@@ -39,7 +39,7 @@ public class Principal {
         while (opcao != 3) {
             switch (opcao) {
                 case 1 -> buscarLivroPorNome();
-                case 2 -> System.out.println("Listar Todos os Livros - Em construção");
+                case 2 -> listarTodosLivros();
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
             System.out.println("""
@@ -67,8 +67,18 @@ public class Principal {
         String resultadoPesquisa = converteDados.obterDados(json, DadosResposta.class).toString();
 
         System.out.println(resultadoPesquisa);
+    }
 
+    public void listarTodosLivros() {
+        System.out.println("Listando todos os livros disponíveis...");
 
+        String urlTodosLivros = "";
+
+        var json = consumoApi.obterDados(urlTodosLivros);
+
+        String resultadoLista = converteDados.obterDados(json, DadosResposta.class).toString();
+
+        System.out.println(resultadoLista);
     }
 
 
