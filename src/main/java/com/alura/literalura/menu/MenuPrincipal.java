@@ -1,15 +1,14 @@
 package com.alura.literalura.menu;
 
 
+import org.springframework.stereotype.Component;
+
 import java.util.Scanner;
 
-import static com.alura.literalura.menu.MenuLivros.buscarLivroPorNome;
-import static com.alura.literalura.menu.MenuLivros.listarTodosLivros;
-
-
+@Component
 public class MenuPrincipal {
 
-    Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
 
     private final MenuAutores menuAutores;
     private final MenuLivros menuLivros;
@@ -48,8 +47,8 @@ public class MenuPrincipal {
 
         while (opcao != 9) {
             switch (opcao) {
-                case 1 -> buscarLivroPorNome();
-                case 2 -> listarTodosLivros();
+                case 1 -> menuLivros.imprimeLivroPorNome();
+                case 2 -> menuLivros.imprimeTodosLivros();
                 case 3 -> menuAutores.imprimeAutores();
                 case 4 -> menuAutores.imprimeAutoresVivosEmAno();
                 //case 5 -> popularTabelaAutores();

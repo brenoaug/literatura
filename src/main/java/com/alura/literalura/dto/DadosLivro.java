@@ -14,9 +14,11 @@ public record DadosLivro(@JsonAlias({"title", "titulo"}) String titulo,
 
     @Override
     public @NotNull String toString() {
-        return "Título: " + titulo +
-                ";\nAutor(es): " + autor +
-                ";\nIdioma: " + idioma +
-                ";\nNúmero de Downloads: " + numeroDownloads;
+        return """
+                Título: %s;
+                Autor(es): %s;
+                Idioma: %s;
+                Número de Downloads: %d
+                """.formatted(titulo, autor, idioma, numeroDownloads);
     }
 }

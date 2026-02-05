@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
-import static com.alura.literalura.menu.MenuLivros.scanner;
+import static com.alura.literalura.menu.MenuPrincipal.scanner;
 
 @Component
 public class MenuAutores {
@@ -20,12 +20,8 @@ public class MenuAutores {
     public void imprimeAutores() {
         System.out.println("Listando todos os autores disponíveis...\n");
 
-        var listaParaImpressao = autorService.buscaAutores()
-                .stream()
-                .map(DadosAutor::toString)
-                .collect(Collectors.joining(",\n\n "));
-
-        System.out.println(listaParaImpressao);
+        autorService.buscaAutores()
+                .forEach(autor -> System.out.println(autor + "\n"));
     }
 
     public void imprimeAutoresVivosEmAno() {
