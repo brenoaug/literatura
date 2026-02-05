@@ -2,19 +2,24 @@ package com.alura.literalura.services;
 
 import com.alura.literalura.dto.DadosAutor;
 import com.alura.literalura.dto.DadosResposta;
+import com.alura.literalura.model.Autor;
+import com.alura.literalura.repository.AutorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class AutorService {
     private final ConverteDados converteDados;
     private final ConsumoApi consumoApi;
+    private final AutorRepository autorRepository;
 
-    public AutorService(ConverteDados converteDados, ConsumoApi consumoApi) {
+    public AutorService(ConverteDados converteDados, ConsumoApi consumoApi, AutorRepository autorRepository) {
         this.converteDados = converteDados;
         this.consumoApi = consumoApi;
+        this.autorRepository = autorRepository;
     }
 
     public List<DadosAutor> buscaAutores() {
@@ -31,5 +36,19 @@ public class AutorService {
         return converteDados.obterDados(json, DadosResposta.class).livro().stream()
                 .flatMap(l -> l.autor().stream()).distinct()
                 .sorted(Comparator.comparing(DadosAutor::nome)).toList();
+    }
+
+    public Autor salvarAutor(DadosAutor dadosAutor) {
+        String nomeAutor = Objects.requireNonNullElse(dadosAutor.nome(), "Autor Desconecido");
+
+        return autorRepository.findByNome(nomeAutor).orElseGet(() -> {
+            Autor autor = new Autor(
+                    nomeAutor,
+                    Objects.requireNonNullElse(dadosAutor.anoNascimento(),0),
+                    Objects.requireNonNullElse(dadosAutor.anoFalecimento(), 0)
+            );
+            autorRepository.save(autor);
+            return autor;
+        });
     }
 }

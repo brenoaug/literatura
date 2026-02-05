@@ -23,4 +23,13 @@ public class Livro {
     @Column(name = "numero_downloads")
     private int numeroDownloads;
 
+    public Livro(String titulo, List<Autor> autores, String idioma, int numeroDownloads) {
+        this.titulo = titulo;
+        this.autores = autores;
+        this.idioma = idioma;
+        this.numeroDownloads = numeroDownloads;
+    }
+
+    public Livro() {
+    }
 }

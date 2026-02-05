@@ -51,7 +51,7 @@ public class MenuPrincipal {
                 case 2 -> menuLivros.imprimeTodosLivros();
                 case 3 -> menuAutores.imprimeAutores();
                 case 4 -> menuAutores.imprimeAutoresVivosEmAno();
-                //case 5 -> popularTabelaAutores();
+                case 5 -> menuLivros.popularTabelas();
                 default -> System.out.println("Opção inválida. Tente novamente.");
             }
             System.out.println("""
@@ -60,6 +60,7 @@ public class MenuPrincipal {
                     2. Listar Todos os Livros
                     3. Lista de Autores
                     4. Listar Autores Vivos em Determinado Ano
+                    5. Popular Tabelas
                     9. Sair
                     """);
             opcao = scanner.nextInt();

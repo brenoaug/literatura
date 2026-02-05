@@ -31,4 +31,20 @@ public class MenuLivros {
                 .forEach(livro -> System.out.println(livro + "\n"));
     }
 
+    public void popularTabelas() {
+        System.out.println("Você que começar de qual pagina\n");
+        int paginaInicial = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Você que terminar em qual pagina\n");
+        int paginaFinal = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.println("Populando tabelas...\n");
+
+        livroService.salvaDadosTabelasLivroAutor(paginaInicial, paginaFinal);
+
+        System.out.println("Tabela populada com sucesso!\n");
+    }
+
 }
