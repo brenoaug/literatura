@@ -39,7 +39,7 @@ public class AutorService {
     }
 
     public Autor salvarAutor(DadosAutor dadosAutor) {
-        String nomeAutor = Objects.requireNonNullElse(dadosAutor.nome(), "Autor Desconecido");
+        String nomeAutor = Objects.requireNonNullElse(dadosAutor.nome(), "Autor Desconhecido");
 
         return autorRepository.findByNome(nomeAutor).orElseGet(() -> {
             Autor autor = new Autor(
